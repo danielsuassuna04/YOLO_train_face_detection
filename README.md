@@ -33,7 +33,7 @@ cd YOLO_train_face_detection
 2. Install the required packages:
 
 ```bash
-pip install -r requirements.txt
+pip install ultralytics kagglehub opencv-python matplotlib
 ```
 
 3. Download the dataset:
@@ -99,7 +99,7 @@ The script generates visualizations for predictions made by the trained YOLO mod
 import matplotlib.pyplot as plt
 import cv2
 
-image_path = "your_image.jpg"
+image_path = "/content/20201124101308.jpg"
 results = model.predict(image_path, conf=0.5)
 
 results[0].plot()  # Save the plotted result
@@ -117,6 +117,32 @@ The trained model is saved to a specified directory for future use.
 ```python
 model.save("/content/drive/MyDrive/models/face_detection_2.pt")
 ```
+
+## Training with Your Own Dataset
+
+To train the model with your own dataset:
+1. Ensure that your dataset is in the format expected by YOLO. This includes having image files and corresponding annotation files (e.g., in COCO or YOLO format).
+2. Modify the `dataset.yaml` file to include the correct paths to your training and validation datasets. For example:
+
+```yaml
+train: /path/to/your/dataset/train
+val: /path/to/your/dataset/val
+
+nc: 1  # Number of classes
+names: ["your_class_name"]
+```
+
+## Available YOLOv8 Models
+
+Ultralytics offers several YOLOv8 models of different sizes, allowing you to choose the one that best fits your requirements:
+
+- **YOLOv8n**: Nano, fastest and least computationally expensive.
+- **YOLOv8s**: Small, a balance between speed and accuracy.
+- **YOLOv8m**: Medium, better accuracy but slower than YOLOv8s.
+- **YOLOv8l**: Large, high accuracy, requires more resources.
+- **YOLOv8x**: Extra-large, highest accuracy, most computationally expensive.
+
+To use a different model, replace `"yolov8n.pt"` with the desired model, such as `"yolov8x.pt"`.
 
 ## Notes
 - Ensure that the dataset is compatible with YOLO's expected format and that the `dataset.yaml` file is correctly configured.
