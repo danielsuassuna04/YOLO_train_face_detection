@@ -1,0 +1,5 @@
+train: /root/.cache/kagglehub/datasets/fareselmenshawii/face-detection-dataset/versions/3/images/train
+val: /root/.cache/kagglehub/datasets/fareselmenshawii/face-detection-dataset/versions/3/images/val
+
+nc: 1
+names: ["human face"]
